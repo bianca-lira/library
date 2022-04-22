@@ -1,13 +1,13 @@
 package com.br.library.service;
 
 import com.br.library.model.CategoryBook;
+import org.springframework.stereotype.Service;
 
-import javax.persistence.Entity;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Entity
+@Service
 public class CategoryBookService implements CrudService<CategoryBook> {
     @Override
     public List<CategoryBook> findAll() {
