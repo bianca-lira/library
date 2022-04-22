@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class AuthorBook {
+public class AuthorBook extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
