@@ -39,7 +39,7 @@ public class StockBookService implements CrudService<StockBook> {
     }
 
     @Override
-    public StockBook update(Integer id, StockBook dto) {
+    public StockBook update(Integer id) {
         Optional<StockBook> stockBook = this.findById(id);
 
         stockBook.ifPresent(stockBookUpdate -> this.repository.save(stockBookUpdate));

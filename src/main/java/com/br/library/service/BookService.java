@@ -31,7 +31,7 @@ public class BookService implements CrudService<Book> {
         book.ifPresent(bookDelete -> this.repository.delete(bookDelete));
     }
 
-    public Book update(Integer id, Book dto) {
+    public Book update(Integer id) {
         Optional<Book> book = this.repository.findById(id);
 
         book.ifPresent(bookUpdate -> this.repository.save(bookUpdate));

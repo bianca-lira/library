@@ -51,6 +51,6 @@ public abstract class CrudResource<T extends BaseEntity>{
 
     @PutMapping("/{id}")
     public ResponseEntity<T> update(@PathVariable Integer id, @Valid @RequestBody T body){
-        return ResponseEntity.ok(service.update(id, body));
+        return ResponseEntity.ok(service.update(id));
     }
 }

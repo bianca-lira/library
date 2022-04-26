@@ -37,7 +37,7 @@ public class AuthorBookService implements CrudService<AuthorBook> {
     }
 
     @Override
-    public AuthorBook update(Integer id, AuthorBook dto) {
+    public AuthorBook update(Integer id) {
         Optional<AuthorBook> authorBook = this.repository.findById(id);
 
         authorBook.ifPresent(author -> this.repository.save(author));

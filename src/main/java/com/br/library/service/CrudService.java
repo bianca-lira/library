@@ -14,5 +14,5 @@ public interface CrudService<T extends BaseEntity> {
 
     void delete(Integer id);
 
-    T update(Integer id, T dto);
+    T update(Integer id);
 }
