@@ -36,13 +36,8 @@ public class Book extends BaseEntity implements Serializable {
     @Column(name = "status")
     private StatusBook status;
 
-    @OneToOne
-    private StockBook stock;
-
     @ManyToOne(cascade = CascadeType.ALL)
     private CategoryBook category;
 
-    @ManyToOne
-    private AuthorBook authorBook;
 
 }

@@ -1,35 +1,40 @@
 package com.br.library.service;
 
 import com.br.library.model.Book;
+import com.br.library.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BookService implements CrudService<Book>{
-    @Override
+public class BookService implements CrudService<Book> {
+
+    @Autowired
+    private BookRepository repository;
+
     public List<Book> findAll() {
-        return null;
+        return this.repository.findAll();
     }
 
-    @Override
-    public Optional<Book> findById(Long id) {
-        return Optional.empty();
+    public Optional<Book> findById(Integer id) {
+        return this.repository.findById(id);
     }
 
-    @Override
-    public Book save(Book dto) {
-        return null;
+    public Book save(Book book) {
+        return this.repository.save(book);
     }
 
-    @Override
-    public void delete(Long id) {
-
+    public void delete(Integer id) {
+        Optional<Book> book = this.repository.findById(id);
+        book.ifPresent(bookDelete -> this.repository.delete(bookDelete));
     }
 
-    @Override
-    public Book update(Long id, Book dto) {
-        return null;
+    public Book update(Integer id) {
+        Optional<Book> book = this.repository.findById(id);
+
+        book.ifPresent(bookUpdate -> this.repository.save(bookUpdate));
+        return book.orElseThrow();
     }
 }
