@@ -15,7 +15,7 @@ public class CategoryBookService implements CrudService<CategoryBook> {
     }
 
     @Override
-    public Optional<CategoryBook> findById(Long id) {
+    public Optional<CategoryBook> findById(Integer id) {
         return Optional.empty();
     }
 
@@ -26,12 +26,12 @@ public class CategoryBookService implements CrudService<CategoryBook> {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
 
     }
 
     @Override
-    public CategoryBook update(Long id, CategoryBook dto) {
+    public CategoryBook update(Integer id, CategoryBook dto) {
         return null;
     }
 }

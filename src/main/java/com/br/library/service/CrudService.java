@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface CrudService<T extends BaseEntity> {
     List<T> findAll();
 
-    Optional<T> findById(Long id);
+    Optional<T> findById(Integer id);
 
     T save(T dto);
 
-    void delete(Long id);
+    void delete(Integer id);
 
-    T update(Long id, T dto);
+    T update(Integer id, T dto);
 }
