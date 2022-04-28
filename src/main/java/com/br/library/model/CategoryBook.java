@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -28,9 +30,11 @@ public class CategoryBook extends BaseEntity implements Serializable {
     private List<Book> books;
 
     @Column(name = "code")
+    @NotNull
     private Integer code;
 
     @Column(name = "description")
+    @NotBlank
     private String description;
 
 

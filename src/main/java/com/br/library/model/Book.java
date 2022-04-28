@@ -10,7 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -24,16 +25,16 @@ public class Book extends BaseEntity implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "title")
+    @NotBlank
     private String title;
 
-    @Column(name = "year")
+    @NotNull
     private Integer year;
 
-    @Column(name = "publishing_company")
+    @NotBlank
     private String publishingCompany;
 
-    @Column(name = "status")
+    @NotNull
     private StatusBook status;
 
     @ManyToOne(cascade = CascadeType.ALL)
