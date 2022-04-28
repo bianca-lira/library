@@ -1,8 +1,11 @@
 package com.br.library.service;
 
+import com.br.library.exception.BusinessRulesException;
+import com.br.library.model.Book;
 import com.br.library.model.CategoryBook;
 import com.br.library.model.StockBook;
 import com.br.library.repository.CategoryBookRepository;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +20,23 @@ public class CategoryBookService implements CrudService<CategoryBook> {
 
     @Override
     public List<CategoryBook> findAll() {
+        List<CategoryBook> categoryBookList = this.repository.findAll();
 
-        return this.repository.findAll();
+        if (categoryBookList.isEmpty()) {
+            throw new BusinessRulesException("Não existem categorias de livros cadastradas. Por favor, contatar administrador!");
+        }
+        return categoryBookList;
     }
 
     @Override
-    public Optional<CategoryBook> findById(Integer id) {
+    public Optional<CategoryBook> findById(Integer id) throws NotFoundException {
 
-        return this.repository.findById(id);
+        Optional<CategoryBook> categoryBook = this.repository.findById(id);
+
+        if (categoryBook.isEmpty()){
+            throw new NotFoundException("Não foi encontrado autor com o id informado");
+        }
+        return categoryBook;
     }
 
     @Override
@@ -35,14 +47,14 @@ public class CategoryBookService implements CrudService<CategoryBook> {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Integer id) throws NotFoundException {
         Optional<CategoryBook> categoryBookId = findById(id);
 
         categoryBookId.ifPresent(categoryBookDelete -> this.repository.delete(categoryBookDelete));
     }
 
     @Override
-    public CategoryBook update(Integer id) {
+    public CategoryBook update(Integer id) throws NotFoundException {
         Optional<CategoryBook> categoryBookId = this.findById(id);
 
         categoryBookId.ifPresent(categoryBookPresent -> this.repository.save(categoryBookPresent));
