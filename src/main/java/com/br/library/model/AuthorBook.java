@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,10 @@ public class AuthorBook extends BaseEntity {
     @Column(name = "id")
     private Integer id;
 
+    @NotBlank
     private String name;
 
+    @NotBlank
     private String nationality;
 
     @OneToMany

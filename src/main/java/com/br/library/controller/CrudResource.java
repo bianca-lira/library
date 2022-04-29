@@ -2,6 +2,7 @@ package com.br.library.controller;
 
 import com.br.library.model.BaseEntity;
 import com.br.library.service.CrudService;
+import javassist.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +30,7 @@ public abstract class CrudResource<T extends BaseEntity>{
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<T> getById(@PathVariable Integer id){
+    public ResponseEntity<T> getById(@PathVariable Integer id) throws NotFoundException {
         Optional<T> optionalT = service.findById(id);
         return optionalT.map(T ->
                         new ResponseEntity<>(T, HttpStatus.OK))
@@ -42,7 +43,7 @@ public abstract class CrudResource<T extends BaseEntity>{
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable Integer id){
+    public ResponseEntity<String> delete(@PathVariable Integer id) throws NotFoundException {
         Optional<T> optional = service.findById(id);
         return optional.map(T ->
                         new ResponseEntity<>("Object with the id " + id + " was deleted.", HttpStatus.NO_CONTENT))
@@ -50,7 +51,7 @@ public abstract class CrudResource<T extends BaseEntity>{
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<T> update(@PathVariable Integer id, @Valid @RequestBody T body){
+    public ResponseEntity<T> update(@PathVariable Integer id, @Valid @RequestBody T body) throws NotFoundException {
         return ResponseEntity.ok(service.update(id));
     }
 }
